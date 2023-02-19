@@ -3,7 +3,8 @@
 const express = require('express');
 //importem llibreria cors
 const cors = require('cors');
-//importem llibrerria Morgan
+
+//importem llibreria Morgan
 const morgan = require('morgan');
 //importem llibreria express-fileupload
 const fileUpload = require('express-fileupload');

@@ -21,10 +21,10 @@ exports.registerUser = (request,response)=>{
                 if(error){
                     throw error.message;
                 }
-                
-                if(res){
-                    return response.status(200).send({info:true});
-                }               
+         
+                     if (res){
+                            return response.status(200).send({info:true});
+                     }                       
                 
                 
             }).catch(error=>{
@@ -54,7 +54,9 @@ exports.loginUser = (request,response)=>{
 
         if(user !== null){
             return response.status(200).send(user);
-        }else{
+
+        }else {
+
             return response.status(204).send(null);
         }
 
@@ -70,7 +72,9 @@ exports.uploadUserPic = (request,response)=>{
     console.log('uploaded file is: ',request.files.picture.name);
     console.log('uploaded user is: ',request.body.user_id);
 
+
     usersModel.updateUserPic(request.body.user_id,request.files.picture.name).then((user,error)=>{
+
 
         if(error){
             throw error.message;
@@ -98,5 +102,6 @@ exports.uploadUserPic = (request,response)=>{
     }).catch(error=>{
         throw error.message
     });
+
 
 }

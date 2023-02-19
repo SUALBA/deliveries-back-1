@@ -43,6 +43,7 @@ exports.loginUser = (info)=>{
             if(result){
                 
                 console.log(result);
+
                 resolve(result);
                 
             }else{
@@ -63,7 +64,9 @@ exports.registerUser = (user)=>{
     try{
 
         const usr = new Users(user);
+
         return usr.save().catch(error=>error.message);
+
         
 
     }catch(error){
@@ -86,7 +89,9 @@ exports.updateUserPic = (userid,picname)=>{
             }
             
             if(user){
-                
+
+                resolve(user);
+
             }else{
                 resolve(undefined);
             }

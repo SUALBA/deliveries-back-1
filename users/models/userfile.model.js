@@ -4,8 +4,10 @@ const fs = require('fs');
 const path = require('path');
 
 
-//let assetsdir = path.join(__dirname,'../../../front_end/src/assets/image');
-let assetsdir = path.join(__dirname,'../../../rlp/src/assets/image')
+
+let assetsdir = path.join(__dirname,'../../../front_end/src/assets/image');
+let dirput = path.join(__dirname,'../../../rlp/src/assets/image')
+
 
 
 exports.createDirectory = async(user)=>{
@@ -14,7 +16,7 @@ exports.createDirectory = async(user)=>{
 
         const makedir = assetsdir+'/'+user._id;
         
-        fs.mkdir(makedir,(error)=>{
+        await fs.promise.mkdir(makedir,(error)=>{
             
             if(error){
                 throw error.message
@@ -22,7 +24,9 @@ exports.createDirectory = async(user)=>{
 
             console.log('new directory created');
             
-            /*fs.copyFile(assetssource,destination,(error)=>{
+
+            fs.copyFile(assetssource,destination,(error)=>{
+
 
                 if(error){
                     throw error.message
@@ -30,14 +34,13 @@ exports.createDirectory = async(user)=>{
 
                 console.log('file copied'); 
 
-            });*/
-                    
+
+            });
+       
                   
 
 
-        });        
-
-        return true;
+           return true;
 
     }catch(error){
         throw error.message;
@@ -51,10 +54,12 @@ exports.updateImageUserFile = async(id,nfile)=>{
 
     try{
 
-        //const direxist = assetsdir+'/'+id+'/'+nfile.name;
+
+        
         const direxist = assetsdir+'/'+id+'/';
         const dirput = assetsdir+'/'+id+'/'+nfile.name;
-        /*fs.readdir(assetsdir+'/'+id,(error,files)=>{
+        fs.readdir(assetsdir+'/'+id,(error,files)=>{
+
 
             if(error){
                 throw error.message;
@@ -74,7 +79,7 @@ exports.updateImageUserFile = async(id,nfile)=>{
 
             
 
-        }); */
+       
         if(fs.existsSync(direxist)){
 
             nfile.mv(dirput,(error)=>{
